@@ -51,7 +51,7 @@ class User {
 			throw new BadRequestError(`Duplicate username ${username}`);
 		}
 
-		const hashedPassword = await bcrypt.hash(passsword, BCRYPT_WORK_FACTOR);
+		const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
 
 		const result = await db.query(
 			`
@@ -72,3 +72,5 @@ class User {
 		return user;
 	}
 }
+
+module.exports = User;
