@@ -49,7 +49,7 @@ router.get("/", ensureAdmin, async function (req, res, next) {
 
 /** GET /[username] => { user }
  *
- * Returns { username, isAdmin, jobs }
+ * Returns { username, isAdmin }
  *
  * Authorization required: admin or same user-as-:username
  **/
