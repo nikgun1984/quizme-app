@@ -20,11 +20,12 @@ class User {
                   email,
                   is_admin AS "isAdmin"
            FROM users
-           WHERE username = $1`,
+           WHERE email = $1`,
 			[email]
 		);
 
 		const user = result.rows[0];
+		console.log("USER: " + user);
 
 		if (user) {
 			// compare hashed password to a new hash from password

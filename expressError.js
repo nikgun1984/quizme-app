@@ -26,6 +26,7 @@ class UnauthorizedError extends ExpressError {
 
 class BadRequestError extends ExpressError {
 	constructor(message = "Bad Request") {
+		console.log("IN BadRequestError");
 		super(message, 400);
 	}
 }
