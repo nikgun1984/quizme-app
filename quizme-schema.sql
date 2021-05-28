@@ -6,12 +6,6 @@ CREATE TABLE users (
   is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE flashcards (
-    id SERIAL PRIMARY KEY,
-    term TEXT NOT NULL,
-	"definition" TEXT NOT NULL
-);
-
 CREATE TABLE studysets (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
@@ -19,8 +13,9 @@ CREATE TABLE studysets (
 	username VARCHAR(25) NOT NULL REFERENCES users
 );
 
-CREATE TABLE studysets_has_flashcards (
-	studyset_id INTEGER NOT NULL REFERENCES studysets ON DELETE CASCADE,
-    flashcard_id INTEGER NOT NULL REFERENCES flashcards,
-    PRIMARY KEY(studyset_id, flashcard_id)
+CREATE TABLE flashcards (
+    id SERIAL PRIMARY KEY,
+    term TEXT NOT NULL,
+	  "definition" TEXT NOT NULL,
+    studyset_id INTEGER NOT NULL REFERENCES studysets
 );

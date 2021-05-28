@@ -6,6 +6,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const authRoutes = require("./routes/auth");
 const usersRoutes = require("./routes/users");
+const setsRoutes = require("./routes/sets");
+
 const app = express();
 
 app.use(cors());
@@ -14,6 +16,7 @@ app.use(morgan("tiny"));
 
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
+app.use("/studysets", setsRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
