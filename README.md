@@ -12,3 +12,5 @@ Technologies used:
 - Bcrypt. 
 - JsonSchema for checking the data for potential input errors. 
 
+![alt text](sample.png)
+
