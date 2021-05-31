@@ -1,13 +1,14 @@
 "use strict";
 
 const express = require("express");
-const { ensureCorrectUserOrAdmin, ensureAdmin } = require("../middleware/auth");
+const { ensureLoggedIn, ensureAdmin } = require("../middleware/auth");
 const { BadRequestError } = require("../expressError");
 const StudySet = require("../models/studySet");
 
 const router = express.Router();
 
-router.post("/", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.post("/", ensureLoggedIn, async function (req, res, next) {
+	console.log(Object.entries(req.body.data.cards));
 	try {
 		const studySet = await StudySet.createSet(
 			req.body,

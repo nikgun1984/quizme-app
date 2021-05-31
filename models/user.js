@@ -25,7 +25,7 @@ class User {
 		);
 
 		const user = result.rows[0];
-		console.log("USER: " + user);
+		console.log("USER: " + Object.entries(user));
 
 		if (user) {
 			// compare hashed password to a new hash from password
