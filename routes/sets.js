@@ -8,13 +8,21 @@ const StudySet = require("../models/studySet");
 const router = express.Router();
 
 router.post("/", ensureLoggedIn, async function (req, res, next) {
-	console.log(Object.entries(req.body.data.cards));
 	try {
 		const studySet = await StudySet.createSet(
 			req.body,
 			res.locals.user.username
 		);
 		return res.status(201).json({ studySet });
+	} catch (err) {
+		return next(err);
+	}
+});
+
+router.get("/:username", ensureLoggedIn, async function (req, res, next) {
+	try {
+		const studySets = await StudySet.usersStudySets(req.params.username);
+		return res.status(200).json({ studySets });
 	} catch (err) {
 		return next(err);
 	}
