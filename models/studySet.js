@@ -58,6 +58,26 @@ class StudySet {
 		return studySet;
 	}
 
+	static async getStudySet(id) {
+		console.log(id);
+		const studySet = await db.query(
+			`
+			SELECT * FROM studysets WHERE id = $1
+		`,
+			[id]
+		);
+		const res = studySet.rows[0];
+		console.log(res);
+
+		const flashcards = await db.query(
+			`SELECT * FROM flashcards WHERE studyset_id = $1`,
+			[res.id]
+		);
+		console.log(flashcards);
+		res.cards = flashcards.rows;
+		return res;
+	}
+
 	static async usersStudySets(username) {
 		const studySets = await db.query(
 			`
@@ -71,9 +91,9 @@ class StudySet {
 				`SELECT * FROM flashcards WHERE studyset_id = $1`,
 				[studyset.id]
 			);
-			studyset.cards = flashcards.rows[0];
+			studyset.cards = flashcards.rows;
 		}
-
+		console.log(results);
 		return results;
 	}
 }
