@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nikgun1984/quizme-app#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",

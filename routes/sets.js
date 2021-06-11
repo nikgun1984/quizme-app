@@ -30,6 +30,17 @@ router.get("/:id", async function (req, res, next) {
 	}
 });
 
+router.patch("/:id", ensureLoggedIn, async function (req, res, next) {
+	try {
+		console.log(req.params.id);
+		const studySet = await StudySet.getStudySet(parseInt(req.params.id));
+		console.log(studySet);
+		return res.status(200).json({ ...studySet });
+	} catch (err) {
+		return next(err);
+	}
+});
+
 router.get("/:username/all", async function (req, res, next) {
 	try {
 		const studySets = await StudySet.usersStudySets(req.params.username);

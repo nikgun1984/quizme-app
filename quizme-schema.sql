@@ -19,3 +19,12 @@ CREATE TABLE flashcards (
 	  "definition" TEXT NOT NULL,
     studyset_id INTEGER NOT NULL REFERENCES studysets
 );
+
+CREATE TABLE dailyword (
+  id SERIAL PRIMARY KEY,
+  term TEXT NOT NULL,
+  part_speech TEXT NOT NULL,
+  "definition" TEXT NOT NULL,
+  syllable TEXT NOT NULL,
+  created_at DATE DEFAULT CURRENT_DATE
+);

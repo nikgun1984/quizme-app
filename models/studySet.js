@@ -22,7 +22,7 @@ class StudySet {
 		const user = preCheck.rows[0];
 
 		if (!user) throw new NotFoundError(`No username: ${username}`);
-		// try to find the user first
+
 		const result = await db.query(
 			`INSERT INTO studysets
 		   (title,description,username)
@@ -93,9 +93,10 @@ class StudySet {
 			);
 			studyset.cards = flashcards.rows;
 		}
-		console.log(results);
 		return results;
 	}
+
+	static updateUserSet;
 }
 
 module.exports = StudySet;
