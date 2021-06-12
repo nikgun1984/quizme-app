@@ -7,6 +7,7 @@ const {
 	NotFoundError,
 	BadRequestError,
 	UnauthorizedError,
+	DuplicationError,
 } = require("../expressError");
 
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
@@ -25,7 +26,7 @@ class User {
 		);
 
 		const user = result.rows[0];
-		console.log("USER: " + Object.entries(user));
+		// console.log("USER: " + Object.entries(user));
 
 		if (user) {
 			// compare hashed password to a new hash from password
@@ -35,12 +36,12 @@ class User {
 				return user;
 			}
 		}
-
+		console.log(user);
 		throw new UnauthorizedError("Invalid username/password");
 	}
 
 	static async register({ username, password, email, isAdmin }) {
-		const duplicatedCheck = await db.query(
+		const duplicatedUsername = await db.query(
 			`SELECT username
 			 FROM users
 			 WHERE username = $1
@@ -48,8 +49,18 @@ class User {
 			[username]
 		);
 
-		if (duplicatedCheck.rows[0]) {
-			throw new BadRequestError(`Duplicate username ${username}`);
+		const duplicatedEmail = await db.query(
+			`SELECT email
+			 FROM users
+			 WHERE email = $1
+			`,
+			[email]
+		);
+
+		if (duplicatedUsername.rows[0] || duplicatedEmail.rows[0]) {
+			throw new DuplicationError(
+				`Duplicated username ${username} or email ${email}`
+			);
 		}
 
 		const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);

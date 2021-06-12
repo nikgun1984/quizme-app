@@ -26,7 +26,6 @@ class UnauthorizedError extends ExpressError {
 
 class BadRequestError extends ExpressError {
 	constructor(message = "Bad Request") {
-		console.log("IN BadRequestError");
 		super(message, 400);
 	}
 }
@@ -39,10 +38,19 @@ class ForbiddenError extends ExpressError {
 	}
 }
 
+/** 409 Duplication error. */
+
+class DuplicationError extends ExpressError {
+	constructor(message = "Duplicated username/email") {
+		super(message, 409);
+	}
+}
+
 module.exports = {
 	ExpressError,
 	NotFoundError,
 	UnauthorizedError,
 	BadRequestError,
 	ForbiddenError,
+	DuplicationError,
 };
