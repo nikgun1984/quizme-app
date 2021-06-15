@@ -11,8 +11,6 @@ const {
 
 class StudySet {
 	static async createSet(data, username) {
-		console.log("I am in createSet");
-		console.log(data);
 		const preCheck = await db.query(
 			`SELECT username
 		   FROM users
@@ -32,14 +30,13 @@ class StudySet {
 		);
 
 		const studySet = result.rows[0];
-		console.log("StudySet: " + studySet);
 
 		const studysetres = await db.query(
 			`SELECT id FROM studysets WHERE title = $1`,
 			[data.title]
 		);
 		const studyID = studysetres.rows[0].id;
-		console.log(studyID);
+
 		for (let card of data.cards) {
 			const { term, definition } = card; // deleted img
 			// if (!img) img = "";
@@ -50,16 +47,13 @@ class StudySet {
 		   		RETURNING id,term,definition,studyset_id`,
 				[term, definition, studyID]
 			);
-			console.log(resCards.rows[0]);
 		}
 
 		studySet.flashcards = data.cards;
-		console.log(studySet);
 		return studySet;
 	}
 
 	static async getStudySet(id) {
-		console.log(id);
 		const studySet = await db.query(
 			`
 			SELECT * FROM studysets WHERE id = $1
@@ -67,13 +61,11 @@ class StudySet {
 			[id]
 		);
 		const res = studySet.rows[0];
-		console.log(res);
 
 		const flashcards = await db.query(
 			`SELECT * FROM flashcards WHERE studyset_id = $1`,
 			[res.id]
 		);
-		console.log(flashcards);
 		res.cards = flashcards.rows;
 		return res;
 	}
@@ -98,8 +90,6 @@ class StudySet {
 	}
 
 	static async updateStudySet(id, data) {
-		console.log("IM IN Update");
-		console.log(data);
 		const set = await db.query(
 			`UPDATE studysets
 		     SET title = $1, description = $2
@@ -124,7 +114,6 @@ class StudySet {
 				[card.term, card.definition, card.id]
 			);
 			studyset.cards.push(resCard.rows[0]);
-			console.log(resCard.rows[0]);
 		}
 		const flashcards = await db.query(
 			`

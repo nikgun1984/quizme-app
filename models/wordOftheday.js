@@ -12,8 +12,6 @@ const {
 
 class WordOfDay {
 	static async getWord(date) {
-		console.log("I am in word of the day");
-		console.log(date);
 		const preCheck = await db.query(
 			`SELECT *
 		   FROM dailyword
@@ -28,8 +26,6 @@ class WordOfDay {
 	}
 
 	static async createWord(date) {
-		console.log("I am in word of the day");
-		console.log(date);
 		const preCheck = await db.query(
 			`SELECT *
 		   FROM dailyword
@@ -37,7 +33,6 @@ class WordOfDay {
 			[date]
 		);
 		const word = preCheck.rows[0];
-		console.log(word);
 		if (!word) {
 			const data = await getRandomWord();
 			const result = await db.query(
