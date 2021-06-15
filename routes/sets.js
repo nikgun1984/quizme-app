@@ -44,6 +44,15 @@ router.put("/:id", ensureLoggedIn, async function (req, res, next) {
 	}
 });
 
+router.delete("/:id", ensureLoggedIn, async function (req, res, next) {
+	try {
+		await StudySet.removeStudyset(req.params.id);
+		return res.json({ deleted: +req.params.id });
+	} catch (err) {
+		return next(err);
+	}
+});
+
 router.delete(
 	"/flashcard/:id",
 	ensureLoggedIn,

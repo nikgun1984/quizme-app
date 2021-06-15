@@ -41,8 +41,8 @@ class StudySet {
 		const studyID = studysetres.rows[0].id;
 		console.log(studyID);
 		for (let card of data.cards) {
-			const { term, definition, img } = card;
-			if (!img) img = "";
+			const { term, definition } = card; // deleted img
+			// if (!img) img = "";
 			const resCards = await db.query(
 				`INSERT INTO flashcards
 		   		(term,definition,studyset_id)
@@ -146,6 +146,18 @@ class StudySet {
 			}
 		}
 		return studyset;
+	}
+
+	static async removeStudyset(id) {
+		const result = await db.query(
+			`DELETE FROM studysets
+           	 WHERE id = $1
+           	 RETURNING id`,
+			[id]
+		);
+		const set = result.rows[0];
+
+		if (!set) throw new NotFoundError(`No studyset: ${id} found`);
 	}
 
 	static async removeFlashcard(id) {
