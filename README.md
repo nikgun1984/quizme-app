@@ -60,8 +60,15 @@ creating quizes and internalize those words by doing different activities. Going
 * [Express.js](https://expressjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Heroku](https://www.heroku.com/)
-* [JsonSchema](https://json-schema.org/)
+* [JsonSchema](https://json-schema.org/)  
 
+<code><img height="40" src="https://raw.githubusercontent.com/shinokada/shinokada/master/assets/javascript.png"></code>
+<code><img height="40" src="https://raw.githubusercontent.com/shinokada/shinokada/master/assets/visual-studio-code.png"></code>
+<code><img height="40" src="https://seeklogo.com/images/J/jest-logo-F9901EBBF7-seeklogo.com.png"></code>
+<code><img height="40" src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"></code>
+<code><img height="40" src="https://cdn.freebiesupply.com/logos/thumbs/2x/nodejs-1-logo.png"></code>
+<code><img height="40" src="https://wolfpaulus.com/wp-content/uploads/2016/12/jsonlogo.png"></code>
+<code><img height="40" src="https://res.cloudinary.com/practicaldev/image/fetch/s--GEOe8aLy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/qgjn9fi1vff7thgbbecs.jpeg"></code>
 
 <!-- Collections -->
 ## Collections
