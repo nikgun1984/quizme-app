@@ -143,3 +143,20 @@ Project Link: [https://github.com/nikgun1984/quizme-app](https://github.com/nikg
 * [othneildrew YOU ROCK!!!](https://github.com/othneildrew/Best-README-Template)
 * [Heroku](https://www.heroku.com/)
 * [Renish](https://github.com/renishb10)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/badge/contributors-2-green
+[contributors-url]: https://github.com/nikgun1984/ketolife_backend/network/dependencies
+[forks-shield]: https://img.shields.io/badge/forks-0-red
+[forks-url]: https://github.com/nikgun1984/ketolife_backend/network/members
+[stars-shield]: https://img.shields.io/badge/stars-0-blue
+[stars-url]: https://github.com/nikgun1984/ketolife_backend/stargazers
+[issues-shield]: https://img.shields.io/badge/issues-0-yellow
+[issues-url]: https://github.com/nikgun1984/ketolife_backend/issues
+[license-shield]: https://img.shields.io/badge/license-MIT-yellowgreen
+[license-url]: https://github.com/nikgun1984/ketolife_backend/blob/main/README.md
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/nick-gundobin-5b905931/
+[product-screenshot]: images/screenshot.png
+=======
