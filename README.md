@@ -22,7 +22,7 @@
 <br />
 <p align="center">
   <a href="https://ketolifeapp.herokuapp.com/">
-    <img src="logo.png" alt="Logo" width="200">
+    <img src="logo.png" alt="Logo" width="100">
   </a>
   <h3 align="center">QuizMe API</h3>
 </p>
@@ -93,6 +93,8 @@ creating quizes and internalize those words by doing different activities. Going
 <!-- USAGE EXAMPLES -->
 ## Usage. 
 
+1. First, make a cURL GET request to read stories.No authentication is required for this endpoint.
+
 
 ## API Schema  
 
@@ -143,6 +145,10 @@ Project Link: [https://github.com/nikgun1984/quizme-app](https://github.com/nikg
 * [othneildrew YOU ROCK!!!](https://github.com/othneildrew/Best-README-Template)
 * [Heroku](https://www.heroku.com/)
 * [Renish](https://github.com/renishb10)
+
+
+
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
