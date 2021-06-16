@@ -22,7 +22,7 @@
 <br />
 <p align="center">
   <a href="https://ketolifeapp.herokuapp.com/">
-    <img src="logo.png" alt="Logo" width="100">
+    <img src="logo.png" alt="Logo" width="200">
   </a>
   <h3 align="center">QuizMe API</h3>
 </p>
