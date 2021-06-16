@@ -35,9 +35,7 @@
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+* [Collections](#collections)
 * [Usage](#usage)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
