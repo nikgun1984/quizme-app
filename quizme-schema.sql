@@ -10,14 +10,14 @@ CREATE TABLE studysets (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
 	"description" TEXT NOT NULL,
-	username VARCHAR(25) NOT NULL REFERENCES users
+	username VARCHAR(25) NOT NULL REFERENCES users ON DELETE CASCADE
 );
 
 CREATE TABLE flashcards (
     id SERIAL PRIMARY KEY,
     term TEXT NOT NULL,
 	  "definition" TEXT NOT NULL,
-    studyset_id INTEGER NOT NULL REFERENCES studysets
+    studyset_id INTEGER NOT NULL REFERENCES studysets ON DELETE CASCADE
 );
 
 CREATE TABLE dailyword (

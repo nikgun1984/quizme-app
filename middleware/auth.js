@@ -27,6 +27,7 @@ function authenticateJWT(req, res, next) {
 				}
 			});
 			res.locals.user = jwt.verify(token, SECRET_KEY);
+			console.log("User: " + res.locals.user);
 		}
 		return next();
 	} catch (err) {
@@ -41,6 +42,7 @@ function authenticateJWT(req, res, next) {
 
 function ensureLoggedIn(req, res, next) {
 	try {
+		console.log(res.locals.user);
 		if (!res.locals.user) throw new UnauthorizedError();
 		return next();
 	} catch (err) {

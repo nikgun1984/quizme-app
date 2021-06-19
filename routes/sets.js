@@ -68,6 +68,7 @@ router.delete(
 
 router.get("/:username/all", async function (req, res, next) {
 	try {
+		console.log(req.params.username);
 		const studySets = await StudySet.usersStudySets(req.params.username);
 		return res.status(200).json([...studySets]);
 	} catch (err) {

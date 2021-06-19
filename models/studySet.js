@@ -11,6 +11,10 @@ const {
 
 class StudySet {
 	static async createSet(data, username) {
+		console.log("IN HERE");
+		console.log(data.cards);
+		console.log(username);
+		console.log("////////////////");
 		const preCheck = await db.query(
 			`SELECT username
 		   FROM users
@@ -31,11 +35,11 @@ class StudySet {
 
 		const studySet = result.rows[0];
 
-		const studysetres = await db.query(
+		const studysets = await db.query(
 			`SELECT id FROM studysets WHERE title = $1`,
 			[data.title]
 		);
-		const studyID = studysetres.rows[0].id;
+		const studyID = studysets.rows[0].id;
 
 		for (let card of data.cards) {
 			const { term, definition } = card; // deleted img
@@ -83,8 +87,10 @@ class StudySet {
 				`SELECT * FROM flashcards WHERE studyset_id = $1`,
 				[studyset.id]
 			);
+			console.log(flashcards.rows);
 			studyset.cards = flashcards.rows;
 		}
+		console.log(results);
 
 		return results;
 	}
