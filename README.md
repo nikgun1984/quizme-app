@@ -48,8 +48,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-https://quizme.herokuapp.com/
-
+https://quizme-api.herokuapp.com/
 
 This API was created as a part of Full Stack application for QuizMe. It was written in Javascript/Node.js and Node.js web application framework Express.js. For database, I used relational database PostgreSQL. This is a RESTful JSON API with two key resources: users and studysets. All endpoints require authentication using JSON Web Tokens (JWT), with the exception of accessing studysets, creating users, getting a word of the day which are open to the public.<!--The purpose of the following application is learning English words by playing games,
 creating quizes and internalize those words by doing different activities. Going ahead it should not to be necessarily limited to english language but can be later extended to different subcategories like learning science/math/biology/preparing for exam and creating flashcards for any class etc. There are so many ideas but I am working on something simple for now.-->
@@ -71,7 +70,12 @@ creating quizes and internalize those words by doing different activities. Going
 <code><img height="40" src="https://res.cloudinary.com/practicaldev/image/fetch/s--GEOe8aLy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/qgjn9fi1vff7thgbbecs.jpeg"></code>
 
 <!-- Collections -->
-## Collections
+## Collections  
+
+### Authorization Routes  
+- Collection endpoints: 
+   - ```/auth/register``` for registration
+   - ```/auth/token``` for authentication
 
 ### Users  
 - Collection endpoint: ```/users```
@@ -98,7 +102,38 @@ creating quizes and internalize those words by doing different activities. Going
 <!-- USAGE EXAMPLES -->
 ## Usage. 
 
-1. First, make a cURL GET request to read stories.No authentication is required for this endpoint.
+### Request  
+1. First, make a cURL GET request to get word of the day. No authentication is required for this endpoint.
+```curl -i https://quizme-api.herokuapp.com/dailyword/word```  
+### Response  
+```
+{
+  "term": "sycophant",
+  "partOfSpeech": "noun",
+  "defs": "n\ta person who tries to please someone in order to gain a personal advantage",
+  "syllable": "sy•cop•hant"
+}
+```
+2. Create a user. No authentication needed yet.  
+### Request  
+``` 
+curl -i \
+     -H "Content-Type: application/json" \
+     -X POST \
+     -d '{
+	"username": "test",
+	"password": "foo123",
+	"email": "test@gmail.com"
+       }' \
+      https://quizme-api.herokuapp.com/auth/register
+```  
+### Response  
+Returns JWT token which can be used to authenticate further requests.  
+```
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjIzODk3MTIxfQ.53z0X9D-CzlJyX-UK-23UJ2czav4MJhtuUzaMHVAoKA"
+}
+```
 
 
 ## API Schema  
