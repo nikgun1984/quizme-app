@@ -10,11 +10,7 @@ const {
 } = require("../expressError");
 
 class StudySet {
-	static async createSet(data, username) {
-		console.log("IN HERE");
-		console.log(data.cards);
-		console.log(username);
-		console.log("////////////////");
+	static async createSet({ username, title, description, cards }) {
 		const preCheck = await db.query(
 			`SELECT username
 		   FROM users
@@ -29,47 +25,26 @@ class StudySet {
 			`INSERT INTO studysets
 		   (title,description,username)
 		   VALUES ($1, $2, $3)
-		   RETURNING title,description,username`,
-			[data.title, data.description, username]
+		   RETURNING id, title,description,username`,
+			[title, description, username]
 		);
 
 		const studySet = result.rows[0];
-		console.log("studyset: ");
-		console.log(studySet);
 
-		const studysets = await db.query(
-			`SELECT id FROM studysets WHERE title = $1`,
-			[data.title]
-		);
-		const studyID = studysets.rows[0].id;
-		studySet.id = studyID;
-		console.log("studyID: ");
-		console.log(studyID);
-		const cards = [];
-		for (let card of data.cards) {
+		for (let card of cards) {
 			const { term, definition } = card; // deleted img
 			console.log(term);
 			console.log(definition);
 			// if (!img) img = "";
-			const resCards = await db.query(
+			await db.query(
 				`INSERT INTO flashcards
 		   		(term,definition,studyset_id)
 		   		VALUES ($1, $2, $3)
 		   		RETURNING id,term,definition,studyset_id`,
-				[term, definition, studyID]
+				[term, definition, studySet.id]
 			);
-			// console.log("resCards: ");
-			// console.log(resCards.rows[0]);
-			// console.log("/////////////");
 		}
-		// console.log("studySet: ");
-		// console.log(studySet);
-		// console.log("/////////////");
-		// studySet["flashcards"] = [...data.cards];
-		studySet.cards = data.cards;
-		console.log("studySet: ");
-		console.log(studySet);
-		console.log("/////////////");
+		studySet.cards = cards;
 		return studySet;
 	}
 
@@ -103,10 +78,8 @@ class StudySet {
 				`SELECT * FROM flashcards WHERE studyset_id = $1`,
 				[studyset.id]
 			);
-			console.log(flashcards.rows);
 			studyset.cards = flashcards.rows;
 		}
-		console.log(results);
 
 		return results;
 	}

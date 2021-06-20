@@ -25,11 +25,10 @@ const dailyWord = require("./routes/dailyword");
 
 const morgan = require("morgan");
 
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json());
+app.use(authenticateJWT);
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(morgan("tiny"));
-
-app.use(authenticateJWT);
 
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
