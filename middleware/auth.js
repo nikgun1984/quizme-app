@@ -19,13 +19,6 @@ function authenticateJWT(req, res, next) {
 		const authHeader = req.headers && req.headers.authorization;
 		if (authHeader) {
 			const token = authHeader.replace(/^[Bb]earer /, "").trim();
-			jwt.verify(token, SECRET_KEY, function (err, decoded) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(decoded);
-				}
-			});
 			res.locals.user = jwt.verify(token, SECRET_KEY);
 			console.log("User: " + res.locals.user);
 		}

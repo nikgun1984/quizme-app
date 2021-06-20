@@ -13,6 +13,9 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
 			req.body,
 			res.locals.user.username
 		);
+		console.log("INSIDE ROUTE");
+		console.log("studySet: ");
+		console.log(studySet);
 		return res.status(201).json({ studySet });
 	} catch (err) {
 		return next(err);

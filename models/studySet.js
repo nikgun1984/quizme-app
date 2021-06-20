@@ -34,15 +34,22 @@ class StudySet {
 		);
 
 		const studySet = result.rows[0];
+		console.log("studyset: ");
+		console.log(studySet);
 
 		const studysets = await db.query(
 			`SELECT id FROM studysets WHERE title = $1`,
 			[data.title]
 		);
 		const studyID = studysets.rows[0].id;
-
+		studySet.id = studyID;
+		console.log("studyID: ");
+		console.log(studyID);
+		const cards = [];
 		for (let card of data.cards) {
 			const { term, definition } = card; // deleted img
+			console.log(term);
+			console.log(definition);
 			// if (!img) img = "";
 			const resCards = await db.query(
 				`INSERT INTO flashcards
@@ -51,9 +58,18 @@ class StudySet {
 		   		RETURNING id,term,definition,studyset_id`,
 				[term, definition, studyID]
 			);
+			// console.log("resCards: ");
+			// console.log(resCards.rows[0]);
+			// console.log("/////////////");
 		}
-
-		studySet.flashcards = data.cards;
+		// console.log("studySet: ");
+		// console.log(studySet);
+		// console.log("/////////////");
+		// studySet["flashcards"] = [...data.cards];
+		studySet.cards = data.cards;
+		console.log("studySet: ");
+		console.log(studySet);
+		console.log("/////////////");
 		return studySet;
 	}
 
