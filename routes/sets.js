@@ -10,9 +10,6 @@ const router = express.Router();
 router.post("/", ensureLoggedIn, async function (req, res, next) {
 	try {
 		const studySet = await StudySet.createSet(req.body);
-		console.log("INSIDE ROUTE");
-		console.log("studySet: ");
-		console.log(studySet);
 		return res.status(201).json({ studySet });
 	} catch (err) {
 		return next(err);
@@ -64,7 +61,6 @@ router.delete(
 
 router.get("/:username/all", async function (req, res, next) {
 	try {
-		console.log(req.params.username);
 		const studySets = await StudySet.usersStudySets(req.params.username);
 		return res.status(200).json([...studySets]);
 	} catch (err) {

@@ -33,8 +33,6 @@ class StudySet {
 
 		for (let card of cards) {
 			const { term, definition } = card; // deleted img
-			console.log(term);
-			console.log(definition);
 			// if (!img) img = "";
 			await db.query(
 				`INSERT INTO flashcards
