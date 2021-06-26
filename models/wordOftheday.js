@@ -11,20 +11,6 @@ const {
 } = require("../expressError");
 
 class WordOfDay {
-	static async getWord(date) {
-		const preCheck = await db.query(
-			`SELECT *
-		   FROM dailyword
-		   WHERE created_at = $1`,
-			[date]
-		);
-		const word = preCheck.rows[0];
-
-		if (!word) return;
-
-		return word;
-	}
-
 	static async createWord(date) {
 		const preCheck = await db.query(
 			`SELECT *
@@ -44,6 +30,20 @@ class WordOfDay {
 			);
 			return result.rows[0];
 		}
+		return word;
+	}
+
+	static async getWord(date) {
+		const preCheck = await db.query(
+			`SELECT *
+		   FROM dailyword
+		   WHERE created_at = $1`,
+			[date]
+		);
+		const word = preCheck.rows[0];
+
+		if (!word) return;
+
 		return word;
 	}
 }

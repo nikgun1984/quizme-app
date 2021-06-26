@@ -275,7 +275,6 @@ describe("remove study set", function () {
 			await StudySet.removeStudyset(0);
 			fail();
 		} catch (err) {
-			console.log(err);
 			expect(err instanceof NotFoundError).toBeTruthy();
 		}
 	});
@@ -295,7 +294,6 @@ describe("remove a flashcard", function () {
 			await StudySet.removeFlashcard(0);
 			fail();
 		} catch (err) {
-			console.log(err);
 			expect(err instanceof NotFoundError).toBeTruthy();
 		}
 	});

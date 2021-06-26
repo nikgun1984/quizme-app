@@ -4,7 +4,7 @@
 	"description": "backend to the quizme application",
 	"main": "app.js",
 	"scripts": {
-		"test": "jest"
+		"test": "jest --watchAll --detectOpenHandles"
 	},
 	"repository": {
 		"type": "git",
