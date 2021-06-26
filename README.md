@@ -60,6 +60,7 @@ creating quizes and internalize those words by doing different activities. Going
 * [PostgreSQL](https://www.postgresql.org/)
 * [Heroku](https://www.heroku.com/)
 * [JsonSchema](https://json-schema.org/)  
+* [Jest](https://jestjs.io/)  
 
 <code><img height="40" src="https://raw.githubusercontent.com/shinokada/shinokada/master/assets/javascript.png"></code>
 <code><img height="40" src="https://raw.githubusercontent.com/shinokada/shinokada/master/assets/visual-studio-code.png"></code>
@@ -95,7 +96,7 @@ creating quizes and internalize those words by doing different activities. Going
 	- id(for flashcard and studyset)  
 
 ### Word of the day  
-- Endpoint for getting a word of the day: ```/dailyword/word```  
+- Endpoint for getting a word of the day: ```/dailyword```  
 - Attributes:
 	- no attributes needed
 
