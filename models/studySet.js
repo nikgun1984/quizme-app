@@ -55,6 +55,8 @@ class StudySet {
 		);
 		const res = studySet.rows[0];
 
+		if (!res) throw new NotFoundError(`No company: ${id}`);
+
 		const flashcards = await db.query(
 			`SELECT * FROM flashcards WHERE studyset_id = $1`,
 			[res.id]
@@ -83,6 +85,10 @@ class StudySet {
 	}
 
 	static async updateStudySet(id, data) {
+		const keys = Object.keys(data);
+		if (keys.length === 0) throw new BadRequestError("No data");
+		// console.log("ID: " + id);
+		// console.log("DATA ID: " + data.id);
 		const set = await db.query(
 			`UPDATE studysets
 		     SET title = $1, description = $2
@@ -97,35 +103,26 @@ class StudySet {
 		if (!studyset) throw new NotFoundError(`No studyset: ${id}`);
 
 		studyset.cards = [];
+
+		/* UPSERT operation if item exists update it otherwise insert a new one */
 		for (let card of data.cards) {
-			const resCard = await db.query(
-				`UPDATE flashcards 
-				SET term = $1, definition = $2
-				WHERE id = $3
-				RETURNING term, definition
+			let resCard = await db.query(
+				`UPDATE flashcards SET term = $1, definition = $2 WHERE id = $3
+				RETURNING id, term, definition, studyset_id;
 				`,
 				[card.term, card.definition, card.id]
 			);
-			studyset.cards.push(resCard.rows[0]);
-		}
-		const flashcards = await db.query(
-			`
-			SELECT * FROM flashcards WHERE studyset_id = $1
-		    `,
-			[id]
-		);
-
-		if (flashcards.rows.length < data.cards.length) {
-			for (let i = flashcards.rows.length; i < data.cards.length; i++) {
-				const resCard = await db.query(
-					`INSERT INTO flashcards
-		   				(term,definition,studyset_id)
-		   				VALUES ($1, $2, $3)
-		   				RETURNING id,term,definition,studyset_id`,
-					[data.cards[i].term, data.cards[i].definition, id]
+			if (!resCard.rows.length) {
+				resCard = await db.query(
+					`INSERT INTO flashcards (term,definition,studyset_id) 
+				VALUES ($1, $2, $3)
+				RETURNING id, term, definition, studyset_id;
+				`,
+					[card.term, card.definition, data.id]
 				);
-				studyset.cards.push(resCard.rows[0]);
 			}
+			// console.log(resCard);
+			studyset.cards.push(resCard.rows[0]);
 		}
 		return studyset;
 	}
