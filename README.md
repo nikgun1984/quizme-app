@@ -98,14 +98,14 @@ creating quizes and internalize those words by doing different activities. Going
 ### Word of the day  
 - Endpoint for getting a word of the day: ```/dailyword```  
 - Attributes:
-	- no attributes needed
+	- no attributes needed but required query string date in the format ```YYYY-MM-DD```
 
 <!-- USAGE EXAMPLES -->
 ## Usage. 
 
 ### Request  
 1. First, make a cURL GET request to get word of the day. No authentication is required for this endpoint.
-```curl -i https://quizme-api.herokuapp.com/dailyword/word```  
+```curl -i https://quizme-api.herokuapp.com/dailyword?date=2021-07-04```  
 ### Response  
 ```
 {
